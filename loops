@@ -1,0 +1,46 @@
+#! /bin/bash
+read -rep $'Bulmak istediğiniz dosyanın adını giriniz:\n' file
+
+
+
+cd /home
+
+
+
+function helper (){
+	value=0
+	for i in $(ls); do {
+			if [[ -d "$i" ]]; then
+				value=1
+				cd "$i"
+				echo "$i"
+				pwd
+				finder
+				helper
+			fi
+	}
+	done
+	if [[ "$value" -eq 0  ]]; then
+		cd ..
+	fi
+
+}
+
+
+
+function finder(){
+
+for i in $(ls); do
+
+if [[ $file == "$i" ]]; then
+	echo "Bu dosya burada --> $(pwd)"
+	local finded=true
+	break
+fi
+
+done
+
+}
+
+
+helper
