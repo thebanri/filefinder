@@ -1,5 +1,5 @@
 #! /bin/bash
-read -rep $'Bulmak istediğiniz dosyanın adını giriniz:\n' file
+read -rep $'Enter the name of the file you want to find:\n' file
 
 
 
@@ -13,8 +13,8 @@ function helper (){
 			if [[ -d "$i" ]]; then
 				value=1
 				cd "$i"
-				echo "$i"
-				pwd
+				#echo "$i"
+				#pwd
 				finder
 				helper
 			fi
@@ -33,9 +33,7 @@ function finder(){
 for i in $(ls); do
 
 if [[ $file == "$i" ]]; then
-	echo "Bu dosya burada --> $(pwd)"
-	local finded=true
-	break
+	echo "File Here --> $(pwd)"
 fi
 
 done
