@@ -6,20 +6,26 @@ read -rep $'Enter the name of the file you want to find:\n' file
 cd /home
 
 
-
 function helper (){
 	value=0
-	for i in $(ls); do {
+	
+		for i in $(ls); do {
 			if [[ -d "$i" ]]; then
 				value=1
-				cd "$i"
+				if cd "$i" ; then
+                  :
+				else
+					continue
+				fi
+				
 				#echo "$i"
-				#pwd
+				pwd
 				finder
 				helper
 			fi
 	}
 	done
+	
 	if [[ "$value" -eq 0  ]]; then
 		cd ..
 	fi
